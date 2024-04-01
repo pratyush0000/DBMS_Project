@@ -36,6 +36,7 @@ html, body {
 
 /* Styles for the container of name and password fields */
 .namepasscontainer {
+    margin-top: 3px;
     display: flex;
     flex-direction: column; /* Stack items vertically */
     margin-bottom: 0px; /* Adjust spacing between containers */
@@ -51,7 +52,7 @@ label {
 input {
     font-size: 16px; /* Increase font size */
     padding: 10px; /* Increase padding */
-    margin-bottom: 5px; /* Adjust spacing between inputs */
+    margin-bottom: 2px; /* Adjust spacing between inputs */
     width: 250px; /* Adjust width of input box */
 }
 
@@ -60,4 +61,23 @@ button {
     font-size: 18px; /* Increase font size */
     padding: 10px 20px; /* Increase padding */
     margin-top: 20px; /* Add margin on top */
+}
+
+.additionalText {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 00px; /* Adjust as needed */
+}
+
+.loginAsDoctor,
+.signUp {
+    font-size: 14px; /* Adjust as needed */
+    color: #666; /* Adjust color as needed */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.loginAsDoctor:hover,
+.signUp:hover {
+    color: #333; /* Change color on hover */
 }
