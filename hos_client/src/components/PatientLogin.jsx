@@ -1,5 +1,6 @@
-import { useState } from "react"
-import axios from 'axios'
+import { useState } from "react";
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import styles from './PatientLogin.module.css';
 
 const PatientLogin=()=>{
@@ -46,7 +47,8 @@ const PatientLogin=()=>{
                 </div>
                 <div className={styles.additionalText}>
                     <span className={styles.loginAsDoctor}>Login as Doctor</span>
-                    <span className={styles.signUp}>New? Sign Up!</span>
+                    {/* <span className={styles.signUp}>New? Sign Up!</span> */}
+                    <Link to="/patientsignup" className={styles.signUp}>New? Sign Up!</Link>
                 </div>
                 <button>Login</button>
             </form>
