@@ -1,0 +1,63 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inria Sans'; 
+}
+
+.flexcontainer {
+    display: flex;
+    height: 100%; /* Set height of flexcontainer to 100% */
+}
+
+.leftdiv {
+    width: 65%; /* Adjust the percentage as needed */
+    height: 800px; /* Set height of leftdiv to 100% */
+    background-color: purple;
+}
+
+.rightdiv {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    width: 35%;
+}
+
+/* Styles for the form */
+.namepassbigbox {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+/* Styles for the container of name and password fields */
+.namepasscontainer {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    margin-bottom: 0px; /* Adjust spacing between containers */
+}
+
+/* Styles for labels */
+label {
+    font-size: 16px; /* Increase font size */
+    margin-bottom: 0px; /* Adjust spacing between label and input */
+}
+
+/* Styles for inputs */
+input {
+    font-size: 16px; /* Increase font size */
+    padding: 10px; /* Increase padding */
+    margin-bottom: 5px; /* Adjust spacing between inputs */
+    width: 250px; /* Adjust width of input box */
+}
+
+/* Styles for buttons */
+button {
+    font-size: 18px; /* Increase font size */
+    padding: 10px 20px; /* Increase padding */
+    margin-top: 20px; /* Add margin on top */
+}
