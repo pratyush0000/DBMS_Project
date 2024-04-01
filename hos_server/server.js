@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { checkcreds } from './database.js'
+import { checkcreds,insertPatient } from './database.js'
 
 const app=express()
 
@@ -30,9 +30,6 @@ app.post("/credspatient", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
-app.listen(8080,()=>{
-    console.log("The server is listening on 8080")
-})  
 
 app.post("/credsdoc", async (req, res) => {
     const { name, password } = req.body;
@@ -53,3 +50,20 @@ app.post("/credsdoc", async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   });
+
+
+  app.post('/signuppatient', async (req, res) => {
+    const { name, dob, mobileNumber, gender, password } = req.body;
+    
+    try {
+      const newPatient = await insertPatient(name, dob, mobileNumber, gender, password);
+      res.status(201).json(newPatient);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while signing up the patient.' });
+    }
+  });
+  app.listen(8080,()=>{
+    console.log("The server is listening on 8080")
+})  
+

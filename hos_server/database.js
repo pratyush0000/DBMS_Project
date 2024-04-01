@@ -12,18 +12,10 @@ export async function checkcreds(name, password,tablename) {
     return rows.length > 0;
   }
 
-export async function getNote(id)
-{
-    const[rows]=await pool.query(`SELECT * FROM notes WHERE id=${id}`)
-    return rows[0];
-}
-
-
-
-
-export async function createNote(title,content)
-{
-    const [result]=await pool.query(`INSERT INTO notes(title,content) VALUES(?,?)`,[title,content])
-    return result.insertId; 
-}
-
+  export async function insertPatient(name, dob, mobile, gender, password) {
+    const [rows] = await pool.query(`SELECT MAX(P_id) as maxId FROM Patients`);
+    const newId = rows[0].maxId + 1;
+    await pool.query(`INSERT INTO Patients (P_id, Name, \`Date Of Birth\`, \`Mobile Number\`, Gender, Password) VALUES (?, ?, ?, ?, ?, ?)`, [newId, name, dob, mobile, gender, password]);
+    const [newRows] = await pool.query(`SELECT P_id, Name, \`Date Of Birth\`, \`Mobile Number\`, Gender FROM Patients WHERE P_id = ?`, [newId]);
+    return newRows[0];
+  }
