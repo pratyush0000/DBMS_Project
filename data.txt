@@ -1,0 +1,22 @@
+Patients
+
++------+---------------+---------------+---------------+--------+---------+------------+
+| P_id | Date of Birth | Name          | Mobile Number | Gender | Room_id | password   |
++------+---------------+---------------+---------------+--------+---------+------------+
+|    1 | 1978-03-15    | Ramesh Sharma |    9876543210 | M      |       1 | password1  |
+|    2 | 1985-08-22    | Sunita Patel  |    9876543211 | F      |       2 | password2  |
+|    3 | 1990-06-10    | Rajesh Kumar  |    9876543212 | M      |       3 | password3  |
+|    4 | 1976-04-18    | Priya Gupta   |    9876543213 | F      |       4 | password4  |
+|    5 | 1969-09-25    | Amit Singh    |    9876543214 | M      |       5 | password5  |
+
+Doctors
+
++------+---------------+---------------------+---------------+--------------------+--------+--------+--------------+
+| D_id | Department    | name                | Qualification | specialization     | salary | Gender | password     |
++------+---------------+---------------------+---------------+--------------------+--------+--------+--------------+
+|    1 | Cardiology    | Dr. Prakash Sharma  | MBBS          | Cardiologist       | 120000 | M      | doctor1pass  |
+|    2 | Neurology     | Dr. Reena Patel     | MD            | Neurologist        | 150000 | F      | doctor2pass  |
+|    3 | Orthopedics   | Dr. Siddharth Verma | MS            | Orthopedic Surgeon | 140000 | M      | doctor3pass  |
+|    4 | Oncology      | Dr. Priyanka Gupta  | MD            | Oncologist         | 130000 | F      | doctor4pass  |
+|    5 | Pediatrics    | Dr. Alok Kumar      | MD            | Pediatrician       | 125000 | M      | doctor5pass  |
+
