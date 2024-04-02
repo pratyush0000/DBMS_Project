@@ -14,10 +14,14 @@ html, body {
 }
 
 .leftdiv {
-    width: 65%; /* Adjust the percentage as needed */
+    width: 65%;
     height: 729px;
     /* height: 100%; */
-    background-color: purple;
+    /* background-color: purple; */
+    background-image: url('../images/doctorloginphoto.png'); /* Path to your image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .rightdiv {
@@ -26,6 +30,7 @@ html, body {
     justify-content: center; /* Center items horizontally */
     align-items: center; /* Center items vertically */
     width: 35%;
+    background-color: #D5F8E4;
 }
 
 /* Styles for the form */
@@ -57,11 +62,20 @@ input {
     width: 250px; /* Adjust width of input box */
 }
 
-/* Styles for buttons */
 button {
-    font-size: 18px; /* Increase font size */
-    padding: 6px 20px; /* Increase padding */
-    margin-top: 20px; /* Add margin on top */
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #77E6A4; /* Darker shade of green */
+  color: black; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add transition for smoother hover effect */
+}
+
+button:hover {
+  background-color: #6AC98C; /* Darker shade of green on hover */
 }
 
 .additionalText {

@@ -15,6 +15,7 @@ const PatientLogin=()=>{
     const [password,setpassword]=useState("")
     const[credscorrect,setcredscorrect]=useState("")
     const [switchpage,setswitchpage]=useState(0);
+    const[newpage,setnewpage]=useState("/patientlogin")
     const handlesubmit=(e)=>{
         e.preventDefault();
         const creds={
@@ -27,6 +28,10 @@ const PatientLogin=()=>{
           }).then((data)=>{
             setcredscorrect(data.message);
             setswitchpage(data.validbool);
+            if(data.validbool==0)
+            {
+                setnewpage("/patienthome")
+            }
             console.log("this is data", data);
           }).catch((error) => console.error('Error:', error));
 
@@ -51,7 +56,7 @@ const PatientLogin=()=>{
                             {/* <span className={styles.signUp}>New? Sign Up!</span> */}
                             <Link to="/patientsignup" className={styles.signUp}>New? Sign Up!</Link>
                         </div>
-                        <button>Login</button>
+                        <button><Link to={newpage}>Login</Link></button>
                     </form>
                     {credscorrect}
                 </div>
