@@ -33,29 +33,30 @@ const PatientLogin=()=>{
     }
     return (
         <>
-    <div className={styles.flexcontainer}>
-        <div className={styles.leftdiv}></div>
-        <div className={styles.rightdiv}>
-            <form action="" onSubmit={handlesubmit} className={styles.namepassbigbox}>
-                <div className={styles.namepasscontainer}>
-                    <label>Name</label>
-                    <input type="string" placeholder="Enter name" onChange={e=>setname(e.target.value)} />
+            <div className={styles.flexcontainer}>
+                <div className={styles.leftdiv}></div>
+                <div className={styles.rightdiv}>
+                    <form action="" onSubmit={handlesubmit} className={styles.namepassbigbox}>
+                        <div className={styles.namepasscontainer}>
+                            <label>Name</label>
+                            <input type="string" placeholder="Enter name" onChange={e=>setname(e.target.value)} />
+                        </div>
+                        <div className={styles.namepasscontainer}>
+                            <label htmlFor="password">Password</label>
+                            <input type="password" placeholder="Enter password" onChange={e=>setpassword(e.target.value)} />
+                        </div>
+                        <div className={styles.additionalText}>
+                            {/* <span className={styles.loginAsDoctor}>Login as Doctor</span> */}
+                            <Link to="/doctorlogin" className={styles.loginAsDoctor}>Login as Doctor</Link>
+                            {/* <span className={styles.signUp}>New? Sign Up!</span> */}
+                            <Link to="/patientsignup" className={styles.signUp}>New? Sign Up!</Link>
+                        </div>
+                        <button>Login</button>
+                    </form>
+                    {credscorrect}
                 </div>
-                <div className={styles.namepasscontainer}>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="Enter password" onChange={e=>setpassword(e.target.value)} />
-                </div>
-                <div className={styles.additionalText}>
-                    <span className={styles.loginAsDoctor}>Login as Doctor</span>
-                    {/* <span className={styles.signUp}>New? Sign Up!</span> */}
-                    <Link to="/patientsignup" className={styles.signUp}>New? Sign Up!</Link>
-                </div>
-                <button>Login</button>
-            </form>
-            {credscorrect}
-        </div>
-    </div>
-</>
+            </div>
+        </>
     )
 }
 

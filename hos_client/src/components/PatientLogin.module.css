@@ -15,7 +15,8 @@ html, body {
 
 .leftdiv {
     width: 65%; /* Adjust the percentage as needed */
-    height: 800px; /* Set height of leftdiv to 100% */
+    height: 729px;
+    /* height: 100%; */
     background-color: purple;
 }
 
@@ -75,6 +76,7 @@ button {
     font-size: 14px; /* Adjust as needed */
     color: #666; /* Adjust color as needed */
     cursor: pointer; /* Change cursor to pointer on hover */
+    text-decoration: none;
 }
 
 .loginAsDoctor:hover,

@@ -1,5 +1,7 @@
 import { useState } from "react"
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+import styles from './DoctorLogin.module.css';
 
 const DoctorLogin=()=>{
 
@@ -11,7 +13,7 @@ const DoctorLogin=()=>{
 
     const [name,setname]=useState("");
     const [password,setpassword]=useState("")
-    const[credscorrect,setcredscorrect]=useState("Passwords not correct")
+    const[credscorrect,setcredscorrect]=useState("")
     const [switchpage,setswitchpage]=useState(0);
     const handlesubmit=(e)=>{
         e.preventDefault();
@@ -30,25 +32,31 @@ const DoctorLogin=()=>{
 
     }
     return (
-        <div>
-            <div>
-                <form action="" onSubmit={handlesubmit}>
-                    <div>
-                        <label>Name</label>
-                        <input type="string" placeholder="Enter name" onChange={e=>setname(e.target.value)}></input>
-
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" placeholder="Enter password" onChange={e=>setpassword(e.target.value)}></input>
-                        
-                        
-                    </div>
-                    <button>Login</button>
-                </form>
-                 {credscorrect}
+        <>
+            <div className={styles.flexcontainer}>
+                <div className={styles.leftdiv}></div>
+                <div className={styles.rightdiv}>
+                    <form action="" onSubmit={handlesubmit} className={styles.namepassbigbox}>
+                        <div className={styles.namepasscontainer}>
+                            <label>Name</label>
+                            <input type="string" placeholder="Enter name" onChange={e=>setname(e.target.value)} />
+                        </div>
+                        <div className={styles.namepasscontainer}>
+                            <label htmlFor="password">Password</label>
+                            <input type="password" placeholder="Enter password" onChange={e=>setpassword(e.target.value)} />
+                        </div>
+                        <div className={styles.additionalText}>
+                            {/* <span className={styles.loginAsDoctor}>Login as Doctor</span> */}
+                            <Link to="/patientlogin" className={styles.loginAsDoctor}>Login as Patient</Link>
+                            {/* <span className={styles.signUp}>New? Sign Up!</span> */}
+                            {/* <Link to="/patientsignup" className={styles.signUp}>New? Sign Up!</Link> */}
+                        </div>
+                        <button>Login</button>
+                    </form>
+                    {credscorrect}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
