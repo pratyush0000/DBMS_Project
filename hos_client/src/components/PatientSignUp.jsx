@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import styles from './PatientSignUp.module.css';
 
 
 const PatientSignUp = () => {
@@ -32,23 +34,23 @@ const PatientSignUp = () => {
 
   return (
     <>
-      <div >
-        
-        <div>
-          <form action="" onSubmit={handleSubmit}>
-            <div>
+      <div className={styles.flexcontainer}>
+        <div className={styles.leftdiv}></div>
+        <div className={styles.rightdiv}>
+          <form action="" onSubmit={handleSubmit} className={styles.namepassbigbox}>
+            <div className={styles.namepasscontainer}>
               <label>Name</label>
               <input type="string" placeholder="Enter name" onChange={e => setName(e.target.value)} />
             </div>
-            <div>
+            <div className={styles.namepasscontainer}>
               <label>Date of Birth</label>
               <input type="date" onChange={e => setDob(e.target.value)} />
             </div>
-            <div>
+            <div className={styles.namepasscontainer}>
               <label>Mobile Number</label>
               <input type="tel" placeholder="Enter mobile number" onChange={e => setMobileNumber(e.target.value)} />
             </div>
-            <div>
+            <div className={styles.namepasscontainer}>
               <label>Gender</label>
               <select onChange={e => setGender(e.target.value)}>
                 <option value="">Select...</option>
@@ -57,9 +59,15 @@ const PatientSignUp = () => {
                 <option value="O">Other</option>
               </select>
             </div>
-            <div>
+            <div className={styles.namepasscontainer}>
               <label>Password</label>
               <input type="password" placeholder="Enter password" onChange={e => setPassword(e.target.value)} />
+            </div>
+            <div className={styles.additionalText}>
+              {/* <span className={styles.loginAsDoctor}>Login as Doctor</span> */}
+              <Link to="/doctorlogin" className={styles.loginAsDoctor}>Login as Doctor</Link>
+              {/* <span className={styles.signUp}>New? Sign Up!</span> */}
+              <Link to="/patientlogin " className={styles.signUp}>Have an Account? Sign In!</Link>
             </div>
             <button>Sign Up</button>
           </form>
