@@ -1,6 +1,6 @@
-import { useState } from "react"
-import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styles from './DoctorLogin.module.css';
 
 const DoctorLogin=()=>{
@@ -28,6 +28,11 @@ const DoctorLogin=()=>{
             setcredscorrect(data.message);
             setswitchpage(data.validbool);
             console.log("this is data", data);
+
+            document.getElementById("Name").value = "";
+            document.getElementById("Password").value = "";
+        
+
           }).catch((error) => console.error('Error:', error));
 
     }
@@ -39,11 +44,11 @@ const DoctorLogin=()=>{
                     <form action="" onSubmit={handlesubmit} className={styles.namepassbigbox}>
                         <div className={styles.namepasscontainer}>
                             <label>Name</label>
-                            <input type="string" placeholder="Enter name" onChange={e=>setname(e.target.value)} />
+                            <input id="Name" type="string" placeholder="Enter name" onChange={e=>setname(e.target.value)} />
                         </div>
                         <div className={styles.namepasscontainer}>
                             <label htmlFor="password">Password</label>
-                            <input type="password" placeholder="Enter password" onChange={e=>setpassword(e.target.value)} />
+                            <input id="Password" type="password" placeholder="Enter password" onChange={e=>setpassword(e.target.value)} />
                         </div>
                         <div className={styles.additionalText}>
                             {/* <span className={styles.loginAsDoctor}>Login as Doctor</span> */}

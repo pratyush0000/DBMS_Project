@@ -4,7 +4,7 @@ import styles from './DoctorHome.module.css';
 const DoctorHome = () => {
   return(
     <>
-    Hello from Patient Home
+    Hello from Doctor Home
     </>
   )
 }

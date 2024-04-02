@@ -4,6 +4,7 @@ import DoctorLogin from "./components/DoctorLogin";
 import PatientLogin from "./components/PatientLogin";
 import PatientSignUp from "./components/PatientSignUp";
 import PatientHome from "./components/PatientHome";
+import DoctorHome from "./components/DoctorHome";
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
             <Route path='/doctorlogin' element = {<DoctorLogin/>}/>
             <Route path='/patientsignup' element = {<PatientSignUp/>}/>
             <Route path='/patienthome' element = {<PatientHome/>}/>
+            <Route path='/doctorhome' element = {<DoctorHome/>}/>
             <Route path='*' element = {<DoctorLogin/>}/>
           </Routes>
         </BrowserRouter>
