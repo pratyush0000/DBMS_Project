@@ -30,6 +30,7 @@ const [selectedDepartment, setSelectedDepartment] = useState('');
 const[doctorsobject,setdoctorsobject]=useState([]);
 const[doctors, setDoctors] = useState([]);
 const[selecteddoctor, setSelectedDoctor] = useState(''); 
+const[Patientid,setPatientId]=useState(null);
 
 //function get departments from 
 const getDepartments = async (e) => {
@@ -69,13 +70,15 @@ const book = async (e) => {
     const response = await instance.post('/api/appointment', {
         symptoms: symptoms,
         doctor: doctorId, // Send the doctor ID
-        patient: patientId,
+        patient: Patientid,
         status: false
     });
     console.log(response);
 }
 return (
      <div>
+      <label>Enter Your Id </label>
+      <input type="number" id="patientId" name="patientId" onChange={(e) => setPatientId(e.target.value)} />
       <button onClick={openModal1}>Book Appointment</button>
 
       {isModalOpen1 && (
