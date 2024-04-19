@@ -12,6 +12,8 @@ const PatientLogin = () => {
     const [password, setpassword] = useState("")
     const [credscorrect, setCredsCorrect] = useState("")
     const [switchPage, setSwitchPage] = useState(0);
+    const [patientId, setPatientId] = useState(null); // Add this line
+
 
     const handlesubmit = (e) => {
         e.preventDefault();
@@ -25,6 +27,8 @@ const PatientLogin = () => {
             setCredsCorrect(data.message);
             setSwitchPage(data.validbool);
             console.log(data.validbool);
+            setPatientId(data.patientId); // Assume patientId is returned in the response
+            console.log(data.patientId);
             console.log(switchPage)
 
             document.getElementById("Name").value = "";
@@ -35,7 +39,7 @@ const PatientLogin = () => {
 
     useEffect(() => {
         if (switchPage === 1) {
-            navigate("/patienthome");
+            navigate("/patienthome", { state: { patientId: patientId } });
         }
     }, [switchPage]);
     return (

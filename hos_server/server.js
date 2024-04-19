@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { checkcreds,insertPatient } from './database.js'
+import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment } from './database.js'
 
 const app=express()
 
@@ -18,9 +18,11 @@ app.post("/credspatient", async (req, res) => {
 
   try {
     const isValid = await checkcreds(name, password,"Patients");
+    const PatientID=await getPatientID(name,password);
+
     if (isValid) {
         console.log("it is valid")
-      res.status(200).json({ message: "Credentials are valid",validbool:1});
+      res.status(200).json({ message: "Credentials are valid",validbool:1,patientId:PatientID});
     } else {
         console.log("it is not valid")
       res.status(200).json({ message: "Invalid credentials",validbool:0 });
@@ -65,6 +67,43 @@ app.post("/credsdoc", async (req, res) => {
       res.status(500).json({ message: 'An error occurred while signing up the patient.' });
     }
   });
+
+  app.get('/api/departments', async (req, res) => {
+    try {
+      const departments = await getDepartments();
+      res.status(200).json(departments);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while fetching departments.' });
+    }
+  });
+
+  app.get('/api/departments/docs', async (req, res) => {
+    const {department} = req.query;
+    try {
+      const doctors = await getDoctorsOfDepartment(department);
+      console.log(doctors);
+      res.status(200).json(doctors);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while fetching doctors.' });
+    }
+  });
+
+  app.post('/api/appointment', async (req, res) => {
+    const { symptoms, doctor, patient, status } = req.body;
+    console.log(symptoms, doctor, patient, status);
+    try {
+      const newAppointment = await insertAppointment(symptoms, doctor, patient, status);
+      console.log(newAppointment);
+      res.status(201).json(newAppointment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while booking the appointment.' });
+    }
+  } );
+
+
   app.listen(8080,()=>{
     console.log("The server is listening on 8080")
 })  
