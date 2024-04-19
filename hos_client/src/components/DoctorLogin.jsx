@@ -3,66 +3,64 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './DoctorLogin.module.css';
 
-const DoctorLogin=()=>{
-
-
+const DoctorLogin = () => {
+    const navigate = useNavigate();
     const instance = axios.create({
         baseURL: 'http://localhost:8080'
-      });
+    });
 
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [credsCorrect, setCredsCorrect] = useState("");
+    const [switchPage, setSwitchPage] = useState(0);
 
-    const [name,setname]=useState("");
-    const [password,setpassword]=useState("")
-    const[credscorrect,setcredscorrect]=useState("")
-    const [switchpage,setswitchpage]=useState(0);
-    const handlesubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const creds={
-            name:name,
-            password:password
-          }
-          instance.post('/credsdoc',creds).then((res)=>{
-            console.log("this is res", res);
-            return res.data;
-          }).then((data)=>{
-            setcredscorrect(data.message);
-            setswitchpage(data.validbool);
-            console.log("this is data", data);
-
-            document.getElementById("Name").value = "";
-            document.getElementById("Password").value = "";
-        
-
-          }).catch((error) => console.error('Error:', error));
-
+        const creds = {
+            name: name,
+            password: password
+        }
+        instance.post('/credsdoc', creds)
+            .then((res) => {
+                const data = res.data;
+                setCredsCorrect(data.message);
+                setSwitchPage(data.validbool);
+                setName("");
+                setPassword("");
+            })
+            .catch((error) => console.error('Error:', error));
     }
+
+    useEffect(() => {
+        if (switchPage === 1) {
+            navigate("/doctorhome");
+        }
+    }, [switchPage, navigate]);
+
     return (
         <>
             <div className={styles.flexcontainer}>
                 <div className={styles.leftdiv}></div>
                 <div className={styles.rightdiv}>
-                    <form action="" onSubmit={handlesubmit} className={styles.namepassbigbox}>
+                    <form onSubmit={handleSubmit} className={styles.namepassbigbox}>
                         <div className={styles.namepasscontainer}>
                             <label>Name</label>
-                            <input id="Name" type="string" placeholder="Enter name" onChange={e=>setname(e.target.value)} />
+                            <input id="Name" type="text" placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className={styles.namepasscontainer}>
                             <label htmlFor="password">Password</label>
-                            <input id="Password" type="password" placeholder="Enter password" onChange={e=>setpassword(e.target.value)} />
+                            <input id="Password" type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className={styles.additionalText}>
-                            {/* <span className={styles.loginAsDoctor}>Login as Doctor</span> */}
                             <Link to="/patientlogin" className={styles.loginAsDoctor}>Login as Patient</Link>
-                            {/* <span className={styles.signUp}>New? Sign Up!</span> */}
-                            {/* <Link to="/patientsignup" className={styles.signUp}>New? Sign Up!</Link> */}
                         </div>
                         <button>Login</button>
                     </form>
-                    {credscorrect}
+                    {credsCorrect}
                 </div>
             </div>
         </>
     )
 }
 
-export default DoctorLogin
+export default DoctorLogin;
