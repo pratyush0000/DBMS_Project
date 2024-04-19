@@ -4,7 +4,7 @@ const pool=mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
     password: 'hello123',
-    database: 'project_dbms'
+    database: 'new_project_dbms'
 }).promise();
 
 export async function checkcreds(name, password,tablename) {
@@ -13,9 +13,9 @@ export async function checkcreds(name, password,tablename) {
   }
 
   export async function insertPatient(name, dob, mobile, gender, password) {
-    const [rows] = await pool.query(`SELECT MAX(P_id) as maxId FROM Patients`);
+    const [rows] = await pool.query(`SELECT MAX(P_ID) as maxId FROM Patients`);
     const newId = rows[0].maxId + 1;
-    await pool.query(`INSERT INTO Patients (P_id, Name, \`Date Of Birth\`, \`Mobile Number\`, Gender, Password) VALUES (?, ?, ?, ?, ?, ?)`, [newId, name, dob, mobile, gender, password]);
-    const [newRows] = await pool.query(`SELECT P_id, Name, \`Date Of Birth\`, \`Mobile Number\`, Gender FROM Patients WHERE P_id = ?`, [newId]);
+    await pool.query(`INSERT INTO Patients (P_ID, Name,dob,mobile_number,sex, Password) VALUES (?, ?, ?, ?, ?, ?)`, [newId, name, dob, mobile, gender, password]);
+    const [newRows] = await pool.query(`SELECT P_ID, Name,dob,mobile_number,sex, Password FROM Patients WHERE P_id = ?`, [newId]);
     return newRows[0];
   }

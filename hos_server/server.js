@@ -57,7 +57,9 @@ app.post("/credsdoc", async (req, res) => {
     
     try {
       const newPatient = await insertPatient(name, dob, mobileNumber, gender, password);
+      console.log(newPatient);
       res.status(201).json(newPatient);
+
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'An error occurred while signing up the patient.' });
