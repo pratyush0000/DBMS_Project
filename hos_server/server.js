@@ -37,7 +37,7 @@ app.post("/credsdoc", async (req, res) => {
     console.log("this is the password " + password);
   
     try {
-      const isValid = await checkcreds(name, password,"Doctors");
+      const isValid = await checkcreds(name, password,"Consultants");
       if (isValid) {
           console.log("it is valid")
         res.status(200).json({ message: "Credentials are valid",validbool:1});
