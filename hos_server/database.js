@@ -75,6 +75,6 @@ export async function insertAppointment(symptoms, doctor, patient, status) {
 
   export async function getpres(patientid)
   {
-    const [rows] = await pool.query(`SELECT * FROM prescriptions WHERE Patient_ID = ?`, [patientid]);
+    const [rows] = await pool.query(`SELECT * FROM prescriptions WHERE Patient_ID = ? and status=1`, [patientid]);
     return rows;
   }
