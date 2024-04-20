@@ -84,3 +84,8 @@ export async function insertAppointment(symptoms, doctor, patient, status) {
    return true;
  }
 
+ export async function getmeds(presid)
+ {
+   const [rows] = await pool.query(`SELECT * FROM medicine inner join pres_tr on medicine.M_ID = pres_tr.Med_ID  WHERE Pres_ID = ?`, [presid]);
+   return rows;
+ }

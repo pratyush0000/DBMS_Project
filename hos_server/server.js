@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment,getDocAppointments,updateAppointment,getpres,updateprescriptiontr} from './database.js'
+import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment,getDocAppointments,updateAppointment,getpres,updateprescriptiontr,getmeds} from './database.js'
 
 const app=express()
 
@@ -144,6 +144,19 @@ app.post("/credsdoc", async (req, res) => {
     }
   });
 
+  app.get('/api/medicines', async (req, res) => {
+    const {prescriptionId}=req.query;
+    console.log(prescriptionId);
+    try {
+      const medicines = await getmeds(prescriptionId);
+      console.log(medicines);
+      res.status(200).json(medicines);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while fetching medicines.' });
+    }
+  }
+) 
   app.listen(8080,()=>{
     console.log("The server is listening on 8080")
 })  

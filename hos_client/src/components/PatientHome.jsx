@@ -42,6 +42,7 @@ const PatientHome = () => {
     const [doctors, setDoctors] = useState([]);
     const [selecteddoctor, setSelectedDoctor] = useState('');
     const [Patientid, setPatientId] = useState(null);
+    const [medicines, setMedicines] = useState([]);
 
     // Function to get departments
     const getDepartments = async (e) => {
@@ -93,9 +94,22 @@ const PatientHome = () => {
                 patientId: Patientid,
             }
         });
+    
         console.log(response);
-        setPrescriptions(response.data);
-        return response.data;
+    
+        const prescriptionsWithMeds = await Promise.all(response.data.map(async (prescription) => {
+            const medsresponse = await instance.get('/api/medicines', {
+                params: {
+                    prescriptionId: prescription.Pres_ID,
+                }
+            });
+            console.log(medsresponse);
+            return {...prescription, medicines: medsresponse.data};
+        }));
+    
+        setPrescriptions(prescriptionsWithMeds);
+    
+        return prescriptionsWithMeds;
     }
 
     useEffect(() => {
@@ -163,28 +177,53 @@ const PatientHome = () => {
                             <div>
                                 <h1>Prescriptions</h1>
                                 <table>
-                                    <thead>
-                                        <tr>
+                                    
+                                    <tbody>
+                                        {prescriptions.map((prescription) => (
+                                            <>
+                                            <tr>
+                                            
                                             <th>Prescription ID</th>
                                             <th>Symptoms</th>
                                             <th>Date</th>
                                             <th>Diagnosis</th>
                                             <th>Advice</th>
                                             <th>Consultant Notes</th>
-
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {prescriptions.map((prescription) => (
-                                            <tr key={prescription.Pres_ID}>
-                                                <td>{prescription.Pres_ID}</td>
-                                                <td>{prescription.symptoms}</td>
-                                                <td>{prescription.Date}</td>
-                                                <td>{prescription.Diagnosis}</td>
-                                                <td>{prescription.Advice}</td>
-                                                <td>{prescription.Consultant_Notes}</td>
-                                                
-                                            </tr>
+                                                <tr key={prescription.Pres_ID}>
+                                                    <td>{prescription.Pres_ID}</td>
+                                                    <td>{prescription.symptoms}</td>
+                                                    <td>{prescription.Date}</td>
+                                                    <td>{prescription.Diagnosis}</td>
+                                                    <td>{prescription.Advice}</td>
+                                                    <td>{prescription.Consultant_Notes}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan="6">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Medicine</th>
+                                                                    <th>No of Days</th>
+                                                                    <th>Frequency</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {prescription.medicines.map((medicine) => (
+                                                                    <tr key={medicine.Name}>
+                                                                        <td>{medicine.Name}</td>
+                                                                        <td>{medicine.Noofdays}</td>
+                                                                        <td>{medicine.Frequency}</td>
+                                                                    </tr>
+                                                                ))}
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr><br></br></tr>
+                                                <tr>-------------------------------------------------------------</tr>
+                                                <tr><br></br></tr>
+                                            </>
                                         ))}
                                     </tbody>
                                 </table>
