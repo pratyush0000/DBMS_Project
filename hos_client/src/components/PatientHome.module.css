@@ -150,3 +150,17 @@ input:focus {
   font-family: 'Courier New', Courier, monospace;
 } */
 
+
+.logoContainer {
+  position: absolute; /* Position the container absolutely */
+  top: 0; /* Position at the top */
+  left: 0; /* Position at the left */
+  z-index: 9999; /* Ensure the logo appears on top of other content */
+}
+
+.logo {
+  width: 3000px; /* Set the width of the logo */
+  height: auto; /* Allow the height to adjust automatically */
+}
+
+

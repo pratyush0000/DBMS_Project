@@ -78,6 +78,9 @@ const PatientHome = () => {
     return (
         <>
             <div className={styles.fullpage}>
+                <div className={styles.logoContainer}>
+                    <img src='hos_client\src\assets\unitylogo.png' alt="UnityLogo" className={styles.logo} />
+                </div>
                 <div className={styles.fulldiv}>
                     <button onClick={openModal1}>Book Appointment</button>
 
@@ -85,32 +88,21 @@ const PatientHome = () => {
                         <div className={styles.modalOverlay}>
                             <div className={styles.modal}>
                                 <div className={styles.xbutton}>
-                                <button onClick={closeModal1}>X</button>
+                                    <button onClick={closeModal1}>X</button>
                                 </div>
                                 <div>
                                     <h1>Book Appointments</h1>
                                     <form>
-
-
                                         <div className={styles.modalidflex}>
-                                        <label>Enter Your Id:  </label>
-                                        <input className={styles.inputidarea} type="number" id="patientId" name="patientId" onChange={(e) => setPatientId(e.target.value)} />
+                                            <label>Enter Your Id:  </label>
+                                            <input className={styles.inputidarea} type="number" id="patientId" name="patientId" onChange={(e) => setPatientId(e.target.value)} />
                                         </div>
-
-
-                                        {/* <br /> */}
-
-
                                         <div className={styles.modalflex}>
-                                        <div className={styles.entersymptomsalign}>
-                                        <label>Enter Symptoms: </label>
+                                            <div className={styles.entersymptomsalign}>
+                                                <label>Enter Symptoms: </label>
+                                            </div>
+                                            <textarea className={styles.inputarea} id="symptoms" name="symptoms" rows="4" cols="50"></textarea>
                                         </div>
-                                        <textarea className={styles.inputarea} id="symptoms" name="symptoms" rows="4" cols="50"></textarea>
-                                        </div>
-
-
-                                        {/* <br /> */}
-
                                         <button className={styles.patientsbutton} onClick={getDepartments}>Choose department</button>
                                         <select className={styles.patiensselect} id="departments" name="departments" onChange={(e) => setSelectedDepartment(e.target.value)}>
                                             {departments.map((department, index) => {
