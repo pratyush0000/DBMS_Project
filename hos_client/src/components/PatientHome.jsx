@@ -4,6 +4,7 @@ import styles from './PatientHome.module.css';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const PatientHome = () => {
     const location = useLocation();
@@ -14,7 +15,7 @@ const PatientHome = () => {
     });
 
     const [isModalOpen1, setIsModalOpen1] = useState(false);
-    const [isModalOpen2, setIsModalOpen2] = useState(false);
+    
 
     const openModal1 = () => {
         setIsModalOpen1(true);
@@ -23,7 +24,18 @@ const PatientHome = () => {
     const closeModal1 = () => {
         setIsModalOpen1(false);
     };
+    const [isPrescriptionsModalOpen, setIsPrescriptionsModalOpen] = useState(false);
 
+    const openPrescriptionsModal = () => {
+        setIsPrescriptionsModalOpen(true);
+    };
+
+    const closePrescriptionsModal = () => {
+        setIsPrescriptionsModalOpen(false);
+    };
+
+
+    const [prescriptions, setPrescriptions] = useState([]);
     const [departments, setDepartments] = useState([]);
     const [selectedDepartment, setSelectedDepartment] = useState('');
     const [doctorsobject, setdoctorsobject] = useState([]);
@@ -75,6 +87,22 @@ const PatientHome = () => {
         console.log(response);
     }
 
+    const getPrescriptions = async () => {
+        const response = await instance.get('/api/patientprescriptions', {
+            params: {
+                patientId: Patientid,
+            }
+        });
+        console.log(response);
+        setPrescriptions(response.data);
+        return response.data;
+    }
+
+    useEffect(() => {
+        if (isPrescriptionsModalOpen) {
+            getPrescriptions();
+        }
+    }, [isPrescriptionsModalOpen]);
     return (
         <>
             <div className={styles.fullpage}>
@@ -123,6 +151,47 @@ const PatientHome = () => {
                             </div>
                         </div>
                     )}
+
+                <button onClick={openPrescriptionsModal}>View Prescriptions</button>
+
+                {isPrescriptionsModalOpen && (
+                    <div className={styles.modalOverlay}>
+                        <div className={styles.modal}>
+                            <div className={styles.xbutton}>
+                                <button onClick={closePrescriptionsModal}>X</button>
+                            </div>
+                            <div>
+                                <h1>Prescriptions</h1>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Prescription ID</th>
+                                            <th>Symptoms</th>
+                                            <th>Date</th>
+                                            <th>Diagnosis</th>
+                                            <th>Advice</th>
+                                            <th>Consultant Notes</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {prescriptions.map((prescription) => (
+                                            <tr key={prescription.Pres_ID}>
+                                                <td>{prescription.Pres_ID}</td>
+                                                <td>{prescription.symptoms}</td>
+                                                <td>{prescription.Date}</td>
+                                                <td>{prescription.Diagnosis}</td>
+                                                <td>{prescription.Advice}</td>
+                                                <td>{prescription.Consultant_Notes}</td>
+                                                
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 </div>
             </div>
         </>

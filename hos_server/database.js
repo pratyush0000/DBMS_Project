@@ -3,7 +3,7 @@ import mysql from 'mysql2';
 const pool=mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
-    password: '1234Pratyush!@#$',
+    password: 'hello123',
     database: 'new_project_dbms'
 }).promise();
 
@@ -72,4 +72,9 @@ export async function insertAppointment(symptoms, doctor, patient, status) {
     const [newRows] = await pool.query(`SELECT Pres_ID, Date, Diagnosis, Advice, Consultant_Notes, Patient_ID, Consultant_ID, symptoms, status FROM prescriptions WHERE Pres_ID = ?`, [presid]);
     return newRows[0];
   }
-  
+
+  export async function getpres(patientid)
+  {
+    const [rows] = await pool.query(`SELECT * FROM prescriptions WHERE Patient_ID = ?`, [patientid]);
+    return rows;
+  }
