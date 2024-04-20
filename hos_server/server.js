@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment } from './database.js'
+import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment,getDocAppointments,updateAppointment } from './database.js'
 
 const app=express()
 
@@ -100,6 +100,33 @@ app.post("/credsdoc", async (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'An error occurred while booking the appointment.' });
+    }
+  } );
+
+
+  app.get('/api/docprescriptions', async (req, res) => {
+    const {doctorid} = req.query;
+    try {
+      const appointments = await getDocAppointments(doctorid);
+      console.log(appointments);
+      res.status(200).json(appointments);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while fetching appointments.' });
+    }
+  });
+
+
+  app.post('/api/updateprescription', async (req, res) => {
+    const { status, diagnosis, advice, consultant_notes, doctorid, presid } = req.body;
+    console.log(status, diagnosis, advice, consultant_notes, doctorid, presid);
+    try {
+      const newAppointment = await updateAppointment(status, diagnosis, advice, consultant_notes, doctorid, presid);
+      console.log(newAppointment);
+      res.status(201).json(newAppointment);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while updating the appointment.' });
     }
   } );
 

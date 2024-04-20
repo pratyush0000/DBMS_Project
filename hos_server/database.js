@@ -61,3 +61,15 @@ export async function insertAppointment(symptoms, doctor, patient, status) {
     const [newRows] = await pool.query(`SELECT Pres_ID, Date, Diagnosis, Advice, Consultant_Notes, Patient_ID, Consultant_ID, symptoms, status FROM prescriptions WHERE Pres_ID = ?`, [newId]);
     return newRows[0];
   }
+
+  export async function getDocAppointments(doctorid) {
+    const [rows] = await pool.query(`SELECT * FROM prescriptions WHERE Consultant_ID = ?`, [doctorid]);
+    return rows;
+  }
+
+  export async function updateAppointment(status, diagnosis, advice, consultant_notes, doctorid, presid) {
+    await pool.query(`UPDATE prescriptions SET status = ?, Diagnosis = ?, Advice = ?, Consultant_Notes = ? WHERE Consultant_ID = ? AND Pres_ID = ?`, [status, diagnosis, advice, consultant_notes, doctorid, presid]);
+    const [newRows] = await pool.query(`SELECT Pres_ID, Date, Diagnosis, Advice, Consultant_Notes, Patient_ID, Consultant_ID, symptoms, status FROM prescriptions WHERE Pres_ID = ?`, [presid]);
+    return newRows[0];
+  }
+  
