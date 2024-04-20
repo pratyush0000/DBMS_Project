@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+h1{
+  font-family: 'Inria Sans';
+  /* color: #77E6A4; */
+  opacity: 80%;
+  margin-bottom: 30px;
+}
+
+
+.fullpage{
+  height: 100vh;
+  width: 100vw;
+  /* background-color: aqua; */
+  /* background-color: green; */
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inria Sans';
+}
+
+.fulldiv {
+  /* background-color: red; */
+  font-family: 'Inria Sans';
+  padding: 30px;
+  width: 1000px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column; /* Stack content vertically */
+}
+
+.patientsbutton{
+  font-size: 16px;
+  width: 240px;
+  height: 42px;
+  margin-right: 5px;
+  border-radius: 8px;
+  font-family: 'Inria Sans';
+}
+
+.patiensselect{
+  border-radius: 8px;
+  width: 280px;
+  height: 42px;
+  font-family: 'Inria Sans';
+}
+
+select:focus {
+  outline: none;
+}
+
+/* select option {
+  background-color: red;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 12px;
+} */
+
+
+/* for id to still be horizonntal  */
+.modalidfelx{
+  display: flex;
+  flex-direction: row;
+}
+
+input:focus {
+  outline: none;
+}
+
+.inputidarea{
+  border-radius: 8px;
+  font-family: 'Inria Sans';
+  width: 77%;
+  height: 10px;
+  margin-bottom: 15px;
+}
+
+
+/* to make symptoms and other things vertical */
+.modalflex{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputarea{
+  width: 100%;
+  border-radius: 8px;
+  font-family: 'Inria Sans';
+}
+
+.entersymptomsalign{
+  width: 100%;
+  /* background-color: red; */
+  text-align: left;
+}
+
+
+/* book appointment button */
+.patientsbuttonbook{
+  font-size: 16px;
+  width: 440px;
+  height: 62px;
+  margin-top: 25px;
+  border-radius: 8px;
+  font-family: 'Inria Sans';
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 0px 30px 30px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  text-align: center; /* Center align text within modal */
+}
+
+.xbutton {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  /* background-color: yellow; */
+}
+
+.xbutton button {
+  background: none;
+  border: none;
+  margin-right: 0%;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+  /* background-color: red; */
+  align-self: flex-start; /* Align button to the top */
+}
+
+
+/* h1{
+  font-family: 'Courier New', Courier, monospace;
+} */
+
