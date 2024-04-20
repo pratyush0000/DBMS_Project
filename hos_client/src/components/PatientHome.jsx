@@ -37,10 +37,10 @@ const PatientHome = () => {
 
     const [prescriptions, setPrescriptions] = useState([]);
     const [departments, setDepartments] = useState([]);
-    const [selectedDepartment, setSelectedDepartment] = useState('');
+    const [selectedDepartment, setSelectedDepartment] = useState('General Medicine');
     const [doctorsobject, setdoctorsobject] = useState([]);
     const [doctors, setDoctors] = useState([]);
-    const [selecteddoctor, setSelectedDoctor] = useState('');
+    const [selecteddoctor, setSelectedDoctor] = useState('Dr. Anand Gupta');
     const [Patientid, setPatientId] = useState(null);
     const [medicines, setMedicines] = useState([]);
 
@@ -85,6 +85,9 @@ const PatientHome = () => {
             patient: Patientid,
             status: false
         });
+        closeModal1();
+    
+        alert("Appointment Booked Successfully");
         console.log(response);
     }
 

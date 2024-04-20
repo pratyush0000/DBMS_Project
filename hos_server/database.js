@@ -47,7 +47,7 @@ export async function insertAppointment(symptoms, doctor, patient, status) {
   }
 
   export async function getDocAppointments(doctorid) {
-    const [rows] = await pool.query(`SELECT * FROM prescriptions WHERE Consultant_ID = ?`, [doctorid]);
+    const [rows] = await pool.query(`SELECT * FROM prescriptions WHERE Consultant_ID = ? and status=0`, [doctorid]);
     return rows;
   }
 

@@ -75,6 +75,7 @@ const submitupdatedrecords = async (event,presid) => {
   
   console.log(response);
   closeModal1();
+  closeAddModal();
 }
   return (
     <div>
@@ -84,37 +85,45 @@ const submitupdatedrecords = async (event,presid) => {
 
      {isModalOpen1 && (
        <div className="modal">
-         <button onClick={closeModal1}>Close</button>
-         <div>
-           <h1>appointments</h1>
-
-           <form>
-              <table>
-                <thead>
-                  <tr>
-
-                    <th>Prescription ID</th>
-                    <th>Status</th>
-                    <th>Symptoms</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                    {prescription.map((prescription) => (
-                                    prescription.status === 0 && (
-                                      <tr key={prescription.Pres_ID}>
-                                        <td>{prescription.Pres_ID}</td>
-                                        <td>{prescription.status}</td>
-                                        <td>{prescription.symptoms}</td>
-                                        <td><button onClick={(event) => openAddModal(event, prescription.Pres_ID)}>ADD</button></td>
-                                      </tr>
-                                    )
-                        ))}
-                </tbody>
-              </table>
-           </form>
-         </div>
+       <button onClick={closeModal1}>Close</button>
+       <div>
+           <h1>aAppointments</h1>
+   
+           {prescription.length === 0 ? (
+                <>
+                <h3>--------------------------------------------------</h3>
+                <br></br>
+               <h2>         No pending appointments</h2>
+                <br></br>
+                <h3>---------------------------------------------------</h3>
+               </>
+           ) : (
+               <form>
+                   <table>
+                       <thead>
+                           <tr>
+                               <th>Prescription ID</th>
+                               <th>Status</th>
+                               <th>Symptoms</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           {prescription.map((prescription) => (
+                               prescription.status === 0 && (
+                                   <tr key={prescription.Pres_ID}>
+                                       <td>{prescription.Pres_ID}</td>
+                                       <td>{prescription.status}</td>
+                                       <td>{prescription.symptoms}</td>
+                                       <td><button onClick={(event) => openAddModal(event, prescription.Pres_ID)}>ADD</button></td>
+                                   </tr>
+                               )
+                           ))}
+                       </tbody>
+                   </table>
+               </form>
+           )}
        </div>
+   </div>
      )}
 
 {isAddModalOpen && (
