@@ -87,7 +87,7 @@ const submitupdatedrecords = async (event,presid) => {
        <div className="modal">
        <button onClick={closeModal1}>Close</button>
        <div>
-           <h1>aAppointments</h1>
+           <h1>Appointments</h1>
    
            {prescription.length === 0 ? (
                 <>
