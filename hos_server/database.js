@@ -37,23 +37,7 @@ export async function checkcreds(name, password,tablename) {
     const doctors = rows.map(row => ({ id: row.C_ID, name: row.Name }));
     return doctors;
 }
-/*
-mysql> desc prescriptions;
-+------------------+--------------+------+-----+---------+-------+
-| Field            | Type         | Null | Key | Default | Extra |
-+------------------+--------------+------+-----+---------+-------+
-| status           | tinyint(1)   | YES  |     | NULL    |       |
-| Pres_ID          | int          | NO   | PRI | NULL    |       |
-| Date             | date         | YES  |     | NULL    |       |
-| Diagnosis        | varchar(100) | YES  |     | NULL    |       |
-| Advice           | text         | YES  |     | NULL    |       |
-| Consultant_Notes | text         | YES  |     | NULL    |       |
-| Patient_ID       | int          | YES  | MUL | NULL    |       |
-| Consultant_ID    | int          | YES  | MUL | NULL    |       |
-| symptoms         | text         | YES  |     | NULL    |       |
-+------------------+--------------+------+-----+---------+-------+
-9 rows in set (0.01 sec)
-*/
+
 export async function insertAppointment(symptoms, doctor, patient, status) {
     const [rows] = await pool.query(`SELECT MAX(Pres_ID) as maxId FROM prescriptions`);
     const newId = rows[0].maxId + 1;
@@ -78,3 +62,25 @@ export async function insertAppointment(symptoms, doctor, patient, status) {
     const [rows] = await pool.query(`SELECT * FROM prescriptions WHERE Patient_ID = ? and status=1`, [patientid]);
     return rows;
   }
+
+ export async function updateprescriptiontr(presid,meds)
+ {
+   for(let i=0;i<meds.length;i++)
+   {
+    const[rows]=await pool.query(`SELECT M_ID,Name FROM medicine where Name=?`,[meds[i].name]);
+    if(rows.length==0)
+    {
+        const [newrows] = await pool.query(`SELECT MAX(M_ID) as maxId FROM medicine`);
+        const newId = newrows[0].maxId + 1;
+        await pool.query(`INSERT INTO medicine (M_ID, Name) VALUES (?, ?)`, [newId, meds[i].name]);
+        await pool.query(`INSERT INTO pres_tr (Pres_ID, Med_ID, Noofdays, Frequency) VALUES (?, ?, ?, ?)`, [presid, newId, meds[i].noofdays, meds[i].frequency]);
+    }
+    else
+    {
+      await pool.query(`INSERT INTO pres_tr (Pres_ID, Med_ID, Noofdays, Frequency) VALUES (?, ?, ?, ?)`, [presid, rows[0].M_ID, meds[i].noofdays, meds[i].frequency]);
+    
+    }
+   }
+   return true;
+ }
+

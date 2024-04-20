@@ -18,6 +18,9 @@ const [diagnosis,setdiagnosis] = useState("");
 const [advice,setadvice] = useState("");
 const [consultant_notes,setconsultant_notes] = useState("");
 const [presIdToUpdate, setPresIdToUpdate] = useState(0);
+const [meds, setMeds] = useState([]);
+const [currentMed, setCurrentMed] = useState({ name: '', noofdays: '', frequency: '' });
+const [isFormVisible, setIsFormVisible] = useState(false);
   const openModal1 = () => {
     setIsModalOpen1(true);
 
@@ -66,7 +69,8 @@ const submitupdatedrecords = async (event,presid) => {
     advice: advice,
     consultant_notes: consultant_notes,
     doctorid: doctorid,
-    presid: presid
+    presid: presid,
+    meds: meds
   });
   
   console.log(response);
@@ -132,7 +136,60 @@ const submitupdatedrecords = async (event,presid) => {
                 Consultant Notes:
                 <input onChange={(event)=>setconsultant_notes(event.target.value)} type="text" name="consultant_notes" /> 
               </label>
+              <button onClick={(event) => 
+                {event.preventDefault();
+                  setIsFormVisible(true)}}>Add Meds</button>
+              {isFormVisible && (
+                  <>
+                    <label>
+                      Medicine Name:
+                      <input id="inpname" onChange={(event) => setCurrentMed({ ...currentMed, name: event.target.value })} type="text" name="name" />
+                    </label>
+                    <label>
+                      Number of Days:
+                      <input id="inpdays" onChange={(event) => setCurrentMed({ ...currentMed, noofdays: event.target.value })} type="number" name="noofdays" />
+                    </label>
+                    <label>
+                      Frequency:
+                      <input id="intimes" onChange={(event) => setCurrentMed({ ...currentMed, frequency: event.target.value })} type="text" name="frequency" />
+                    </label>
+                    <button onClick={(event) => {
+                      event.preventDefault();
+                      setMeds(prevMeds => [...prevMeds, currentMed]);
+                      setCurrentMed({ name: '', noofdays: '', frequency: '' });
+                      document.getElementById('inpname').value = '';
+                      document.getElementById('inpdays').value = '';
+                      document.getElementById('intimes').value = '';
 
+                    }}>Add Med</button>
+                    <br></br>
+
+                  {meds.length > 0 && (
+                     <>
+                     <br></br>
+                        <table>
+                          <thead>
+                            
+                            <tr>
+                              <th>Medicine Name</th>
+                              <th>Number of Days</th>
+                              <th>Frequency</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {meds.map((med, index) => (
+                              <tr key={index}>
+                                <td>{med.name}</td>
+                                <td>{med.noofdays}</td>
+                                <td>{med.frequency}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        </>
+                      )}
+                    </>
+                  )}
 
               <button onClick={(event) => submitupdatedrecords(event, presIdToUpdate)} type="submit">Submit</button>
             </form>

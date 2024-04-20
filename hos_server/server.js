@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment,getDocAppointments,updateAppointment,getpres} from './database.js'
+import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment,getDocAppointments,updateAppointment,getpres,updateprescriptiontr} from './database.js'
 
 const app=express()
 
@@ -118,10 +118,11 @@ app.post("/credsdoc", async (req, res) => {
 
 
   app.post('/api/updateprescription', async (req, res) => {
-    const { status, diagnosis, advice, consultant_notes, doctorid, presid } = req.body;
-    console.log(status, diagnosis, advice, consultant_notes, doctorid, presid);
+    const { status, diagnosis, advice, consultant_notes, doctorid, presid,meds } = req.body;
+    console.log(status, diagnosis, advice, consultant_notes, doctorid, presid,meds);
     try {
       const newAppointment = await updateAppointment(status, diagnosis, advice, consultant_notes, doctorid, presid);
+      const updateprestr=await updateprescriptiontr(presid,meds);
       console.log(newAppointment);
       res.status(201).json(newAppointment);
     } catch (error) {
