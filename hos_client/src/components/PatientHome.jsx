@@ -5,10 +5,9 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import logo from '../images/unitylogo.png';
 
 const PatientHome = () => {
-    const location = useLocation();
-    const patientId = location.state ? location.state.patientId : null; // Check if location.state is defined
 
     const instance = axios.create({
         baseURL: 'http://localhost:8080'
@@ -41,7 +40,8 @@ const PatientHome = () => {
     const [doctorsobject, setdoctorsobject] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [selecteddoctor, setSelectedDoctor] = useState('Dr. Anand Gupta');
-    const [Patientid, setPatientId] = useState(null);
+    const Patientid = parseInt(localStorage.getItem("PatientID"));
+
     const [medicines, setMedicines] = useState([]);
 
     // Function to get departments
@@ -124,20 +124,15 @@ const PatientHome = () => {
         <>
             <div className={styles.fullpage}>
                 <div className={styles.logoContainer}>
-                    <img src='hos_client\src\assets\unitylogo.png' alt="UnityLogo" className={styles.logo} />
+                    <img src={logo} alt="UnityLogo" className={styles.logo} />
                 </div>
 
                 <div className={styles.divflexwelcomepatint}>
-                <div className={styles.welcomepatient}>Welcome Patient</div>
+                <div className={styles.welcomepatient}>Welcome {localStorage.getItem("PatientName")}</div>
                 
                 
                 
                 <div className={styles.fulldiv}>
-    
-                    <div className={styles.enteridflex}>
-                            {/* <label>Enter Your Id:  </label> */}
-                            <input className={styles.inputidarea} type="number" id="patientId" placeholder="Enter ID" name="patientId" onChange={(e) => setPatientId(e.target.value)} />
-                    </div>
                 <div className={styles.buttonhomeflex}>
 
                     <button className={styles.patientsbuttonreal} onClick={openModal1}>Book Appointment</button>

@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment,getDocAppointments,updateAppointment,getpres,updateprescriptiontr,getmeds} from './database.js'
+import { checkcreds,insertPatient,getPatientID,getDepartments,getDoctorsOfDepartment,insertAppointment,getDocAppointments,updateAppointment,getpres,updateprescriptiontr,getmeds,getDoctorID} from './database.js'
 
 const app=express()
 
@@ -22,7 +22,7 @@ app.post("/credspatient", async (req, res) => {
 
     if (isValid) {
         console.log("it is valid")
-      res.status(200).json({ message: "Credentials are valid",validbool:1,patientId:PatientID});
+      res.status(200).json({ message: "Credentials are valid",validbool:1,patientId:PatientID,patientname:name});
     } else {
         console.log("it is not valid")
       res.status(200).json({ message: "Invalid credentials",validbool:0 });
@@ -40,9 +40,10 @@ app.post("/credsdoc", async (req, res) => {
   
     try {
       const isValid = await checkcreds(name, password,"Consultants");
+      const doctorId=await getDoctorID(name,password);
       if (isValid) {
           console.log("it is valid")
-        res.status(200).json({ message: "Credentials are valid",validbool:1});
+        res.status(200).json({ message: "Credentials are valid",validbool:1,doctorId:doctorId,doctorname:name});
       } else {
           console.log("it is not valid")
         res.status(200).json({ message: "Invalid credentials",validbool:0 });

@@ -23,6 +23,8 @@ const DoctorLogin = () => {
         instance.post('/credsdoc', creds)
             .then((res) => {
                 const data = res.data;
+                localStorage.setItem("DoctorID", `${data.doctorId}`);
+                localStorage.setItem("DoctorName", `${data.doctorname}`);
                 setCredsCorrect(data.message);
                 setSwitchPage(data.validbool);
                 setName("");

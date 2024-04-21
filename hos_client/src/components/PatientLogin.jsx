@@ -24,6 +24,8 @@ const PatientLogin = () => {
         instance.post('/credsPatient', creds).then((res) => {
          
             const data = res.data;
+            localStorage.setItem("PatientID", `${data.patientId}`); // Save the patientId in localStorage
+            localStorage.setItem("PatientName", `${data.patientname}`); // Save the patientName in localStorage
             setCredsCorrect(data.message);
             setSwitchPage(data.validbool);
             console.log(data.validbool);

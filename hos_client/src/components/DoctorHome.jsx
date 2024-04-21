@@ -3,6 +3,7 @@ import styles from './DoctorHome.module.css'; // Import CSS module
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../images/unitylogo.png';
 
 const DoctorHome = () => {
   const instance = axios.create({
@@ -11,7 +12,8 @@ const DoctorHome = () => {
 
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [doctorid, setDoctorid] = useState(0);
+  //const [doctorid, setDoctorid] = useState(0);
+  const doctorid = parseInt(localStorage.getItem("DoctorID"));
   const [prescription, setPrescription] = useState([]);
   const [diagnosis, setDiagnosis] = useState("");
   const [advice, setAdvice] = useState("");
@@ -71,12 +73,14 @@ const DoctorHome = () => {
   }
 
   return (
+    <>
+    <div className={styles.logoContainer}>
+                    <img src={logo} alt="UnityLogo" className={styles.logo} />
+                </div>
     <div className={styles.container}>
       <div className={styles.center}>
         <div className={styles.centerflex}>
-        <div className={styles.welcomedoctor}>Welcome Doctor</div>
-        {/* <label htmlFor="doctorid">Enter Your Id</label> */}
-        <input className={styles.inputidbox} type="number" id="doctorid" placeholder="Enter ID" name="doctorid" onChange={(e) => setDoctorid(e.target.value)} />
+        <div className={styles.welcomedoctor}>Welcome {localStorage.getItem("DoctorName")}</div>
         <button onClick={() => { openModal1(); getappointments(); }}>View Appointments</button>
         </div>
       </div>
@@ -116,6 +120,7 @@ const DoctorHome = () => {
       )}
     </div>
   </div>
+  
 )}
 
 
@@ -147,14 +152,12 @@ const DoctorHome = () => {
           <>
             <table className={styles.medsTable}>
               <thead>
-                {meds.length > 0 && (
                   <tr>
                     <th>Medicine Name</th>
                     <th>Number of Days</th>
                     <th>Frequency</th>
                     <th>Action</th>
                   </tr>
-                )}
               </thead>
               <tbody>
                 <tr>
@@ -201,7 +204,9 @@ const DoctorHome = () => {
 )}
 
     </div>
+    </>
   )
+
 }
 
 export default DoctorHome;

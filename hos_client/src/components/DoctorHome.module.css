@@ -22,6 +22,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   font-family: 'Inria Sans';
+  
 }
 
 .centered {
@@ -60,6 +61,8 @@
   max-width: 600px;
   width: 90%;
   font-family: 'Inria Sans';
+  max-height: calc(95% - 95px); /* Set a maximum height for the modal */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
 }
 
 .closeButton {
@@ -172,3 +175,15 @@ h1 {
   margin-bottom: 20px;
   font-size: 20px;
 }
+.logoContainer {
+    position: absolute; /* Position the container absolutely */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    z-index: 9999; /* Ensure the logo appears on top of other content */
+  }
+  
+.logo {
+    width: 190px; /* Set the width of the logo */
+    height: auto; /* Allow the height to adjust automatically */
+    margin: 10px;
+  }

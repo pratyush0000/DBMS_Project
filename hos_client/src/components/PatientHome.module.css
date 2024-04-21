@@ -205,8 +205,9 @@ input:focus {
 }
 
 .logo {
-  width: 3000px; /* Set the width of the logo */
+  width: 190px; /* Set the width of the logo */
   height: auto; /* Allow the height to adjust automatically */
+  margin: 10px;
 }
 
 

@@ -3,7 +3,7 @@ import mysql from 'mysql2';
 const pool=mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
-    password: '1234Pratyush!@#$',
+    password: 'hello123',
     database: 'new_project_dbms'
 }).promise();
 
@@ -26,6 +26,12 @@ export async function checkcreds(name, password,tablename) {
     return rows[0].P_ID;
   }
 
+  export async function getDoctorID(name,password)
+  {
+    const [rows] = await pool.query(`SELECT C_ID FROM Consultants WHERE Name = ? AND Password = ?`, [name, password]);
+    return rows[0].C_ID;
+  }
+  
   export async function getDepartments() {
     const [rows] = await pool.query(`SELECT DISTINCT Department FROM consultants;`);
     const departments = rows.map(row => row.Department);
