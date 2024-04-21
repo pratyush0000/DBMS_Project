@@ -126,9 +126,21 @@ const PatientHome = () => {
                 <div className={styles.logoContainer}>
                     <img src='hos_client\src\assets\unitylogo.png' alt="UnityLogo" className={styles.logo} />
                 </div>
-                <div className={styles.fulldiv}>
-                    <button onClick={openModal1}>Book Appointment</button>
 
+                <div className={styles.divflexwelcomepatint}>
+                <div className={styles.welcomepatient}>Welcome Patient</div>
+                
+                
+                
+                <div className={styles.fulldiv}>
+    
+                    <div className={styles.enteridflex}>
+                            {/* <label>Enter Your Id:  </label> */}
+                            <input className={styles.inputidarea} type="number" id="patientId" placeholder="Enter ID" name="patientId" onChange={(e) => setPatientId(e.target.value)} />
+                    </div>
+                <div className={styles.buttonhomeflex}>
+
+                    <button onClick={openModal1}>Book Appointment</button>
                     {isModalOpen1 && (
                         <div className={styles.modalOverlay}>
                             <div className={styles.modal}>
@@ -138,10 +150,6 @@ const PatientHome = () => {
                                 <div>
                                     <h1>Book Appointments</h1>
                                     <form>
-                                        <div className={styles.modalidflex}>
-                                            <label>Enter Your Id:  </label>
-                                            <input className={styles.inputidarea} type="number" id="patientId" name="patientId" onChange={(e) => setPatientId(e.target.value)} />
-                                        </div>
                                         <div className={styles.modalflex}>
                                             <div className={styles.entersymptomsalign}>
                                                 <label>Enter Symptoms: </label>
@@ -168,7 +176,7 @@ const PatientHome = () => {
                             </div>
                         </div>
                     )}
-
+                <div className={styles.middiv}> OR </div>
                 <button onClick={openPrescriptionsModal}>View Prescriptions</button>
 
                 {isPrescriptionsModalOpen && (
@@ -234,6 +242,8 @@ const PatientHome = () => {
                         </div>
                     </div>
                 )}
+                </div>
+                </div>
                 </div>
             </div>
         </>

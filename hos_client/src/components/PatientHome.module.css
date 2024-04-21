@@ -13,6 +13,8 @@ h1{
   width: 100vw;
   /* background-color: aqua; */
   /* background-color: green; */
+  background-color: #f2f2f2;
+  /* background-color: #FAFAFA; */
   display: grid;
   align-items: center;
   justify-content: center;
@@ -24,10 +26,11 @@ h1{
   font-family: 'Inria Sans';
   padding: 30px;
   width: 1000px;
+  height: 80px;
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  flex-direction: column; /* Stack content vertically */
+  flex-direction: column; 
 }
 
 .patientsbutton{
@@ -58,8 +61,23 @@ select:focus {
 } */
 
 
+.welcomepatient{
+  font-size: 20px;
+  /* margin-bottom: -20%; */
+  /* background-color: yellow; */
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+
 /* for id to still be horizonntal  */
-.modalidfelx{
+.enteridflex{
+  /* color: green; */
+  width: 40%;
+}
+
+.buttonhomeflex{
   display: flex;
   flex-direction: row;
 }
@@ -69,11 +87,28 @@ input:focus {
 }
 
 .inputidarea{
+  background-color: #f2f2f2;
   border-radius: 8px;
   font-family: 'Inria Sans';
-  width: 77%;
+  width: 94%;
   height: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
+  margin-right: 0%;
+  /* background-color: yellow; */
+}
+
+.inputidarea::placeholder{
+  color: grey;
+}
+
+.middiv{
+  /* background-color: pink; */
+  height: 50px;
+  width: 50px;
+  display: grid;
+  align-items: end;
+  justify-content: center;
+  font-family: 'Inria Sans';
 }
 
 
