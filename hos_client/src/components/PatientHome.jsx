@@ -140,7 +140,7 @@ const PatientHome = () => {
                     </div>
                 <div className={styles.buttonhomeflex}>
 
-                    <button onClick={openModal1}>Book Appointment</button>
+                    <button className={styles.patientsbuttonreal} onClick={openModal1}>Book Appointment</button>
                     {isModalOpen1 && (
                         <div className={styles.modalOverlay}>
                             <div className={styles.modal}>
@@ -176,72 +176,76 @@ const PatientHome = () => {
                             </div>
                         </div>
                     )}
+
+
+
+                    
                 <div className={styles.middiv}> OR </div>
-                <button onClick={openPrescriptionsModal}>View Prescriptions</button>
+
+
+
+
+                <button onClick={openPrescriptionsModal} className={styles.patientsbuttonreal}>View Prescriptions</button>
 
                 {isPrescriptionsModalOpen && (
-                    <div className={styles.modalOverlay}>
-                        <div className={styles.modal}>
-                            <div className={styles.xbutton}>
-                                <button onClick={closePrescriptionsModal}>X</button>
-                            </div>
-                            <div>
-                                <h1>Prescriptions</h1>
-                                <table>
-                                    
-                                    <tbody>
-                                        {prescriptions.map((prescription) => (
-                                            <>
-                                            <tr>
-                                            
-                                            <th>Prescription ID</th>
-                                            <th>Symptoms</th>
-                                            <th>Date</th>
-                                            <th>Diagnosis</th>
-                                            <th>Advice</th>
-                                            <th>Consultant Notes</th>
-                                        </tr>
-                                                <tr key={prescription.Pres_ID}>
-                                                    <td>{prescription.Pres_ID}</td>
-                                                    <td>{prescription.symptoms}</td>
-                                                    <td>{prescription.Date}</td>
-                                                    <td>{prescription.Diagnosis}</td>
-                                                    <td>{prescription.Advice}</td>
-                                                    <td>{prescription.Consultant_Notes}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colSpan="6">
-                                                        <table>
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Medicine</th>
-                                                                    <th>No of Days</th>
-                                                                    <th>Frequency</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                {prescription.medicines.map((medicine) => (
-                                                                    <tr key={medicine.Name}>
-                                                                        <td>{medicine.Name}</td>
-                                                                        <td>{medicine.Noofdays}</td>
-                                                                        <td>{medicine.Frequency}</td>
-                                                                    </tr>
-                                                                ))}
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                                <tr><br></br></tr>
-                                                <tr>-------------------------------------------------------------</tr>
-                                                <tr><br></br></tr>
-                                            </>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                )}
+  <div className={styles.modalOverlay}>
+    <div className={styles.modal}>
+      <div className={styles.xbutton}>
+        <button onClick={closePrescriptionsModal}>X</button>
+      </div>
+      <div className={styles.modalflex}>
+        <h1 className={styles.modalTitle}>Prescriptions</h1>
+        {prescriptions.map((prescription) => (
+          <div className={styles.prescriptionBox}>
+            <table className={styles.prescriptionTable}>
+              <tbody>
+                <tr>
+                  <th>Prescription ID</th>
+                  <th>Symptoms</th>
+                  <th>Date</th>
+                  <th>Diagnosis</th>
+                  <th>Advice</th>
+                  <th>Consultant Notes</th>
+                </tr>
+                <tr key={prescription.Pres_ID}>
+                  <td>{prescription.Pres_ID}</td>
+                  <td>{prescription.symptoms}</td>
+                  <td>{prescription.Date}</td>
+                  <td>{prescription.Diagnosis}</td>
+                  <td>{prescription.Advice}</td>
+                  <td>{prescription.Consultant_Notes}</td>
+                </tr>
+                <tr>
+                  <td colSpan="6">
+                    <table className={styles.prescriptionTable}>
+                      <thead>
+                        <tr>
+                          <th>Medicine</th>
+                          <th>No of Days</th>
+                          <th>Frequency</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {prescription.medicines.map((medicine) => (
+                          <tr key={medicine.Name}>
+                            <td>{medicine.Name}</td>
+                            <td>{medicine.Noofdays}</td>
+                            <td>{medicine.Frequency}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
                 </div>
                 </div>
                 </div>
