@@ -189,7 +189,7 @@ const PatientHome = () => {
 
                 {isPrescriptionsModalOpen && (
   <div className={styles.modalOverlay}>
-    <div className={styles.modal}>
+    <div className={`${styles.modal} ${styles.prescriptionModal}`}>
       <div className={styles.xbutton}>
         <button onClick={closePrescriptionsModal}>X</button>
       </div>

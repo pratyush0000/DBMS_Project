@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.center {
+  text-align: center;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-family: 'Inria Sans';
+}
+
+.centered {
+  z-index: 2;
+}
+
+.appointmentsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointmentsTable th, .appointmentsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.appointmentsTable th {
+  background-color: #f2f2f2;
+}
+
+.appointmentsTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.appointmentsTable tr:hover {
+  background-color: #ddd;
+}
+
+/* Modal Styles */
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 90%;
+  font-family: 'Inria Sans';
+}
+
+.closeButton {
+  background-color: #77E6A4;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-family: 'Inria Sans';
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: 'Inria Sans';
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-family: 'Inria Sans';
+}
+
+.input {
+  width: 96%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-family: 'Inria Sans';
+}
+
+.addButton {
+  background-color: #77E6A4;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: 'Inria Sans';
+}
+
+.submitButton {
+  background-color: #77E6A4;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: 'Inria Sans';
+}
+
+/* Meds Table Styles */
+.medsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.medsTable th,
+.medsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.medsTable th {
+  background-color: #f2f2f2;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .modal {
+    max-width: 90%;
+    font-family: 'Inria Sans';
+  }
+}
+
+
+.centerflex{
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  height: 50px;
+}
+
+.inputidbox{
+  border-radius: 8px;
+  font-family: 'Inria Sans';
+  height: 10px;
+  margin-bottom: -10px;
+  background-color: #f2f2f2;
+}
+
+.welcomedoctor{
+  /* background-color: #4CAF50; */
+  margin-top: -20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
